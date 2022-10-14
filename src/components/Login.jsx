@@ -1,11 +1,28 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
+import FormInput from "./FormInput";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import '../App.css';
 import pic from '../Picture.png'
 
 const Login = () => {
     const navigate = useNavigate();
+    const [loginDetails, setLoginDetails] = React.useState({
+        email: '',
+        password: ''
+    })
+
+    const display = (e) => {
+        e.preventDefault();
+        console.log(loginDetails.email, loginDetails.password)
+    }
+
+    // React.useEffect((e) => {
+    //     e.preventDefault();
+    //     console.log({...loginDetails})
+    // }, [loginDetails])
+    
+
     return(
         <Fragment>
             <Container className="fullHeight" as={'div'} fluid>
@@ -19,16 +36,25 @@ const Login = () => {
                     </Col>
                     <Col sm={12} md={5} className="my-auto p-5">
                         <Form>
-                            <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Form.Label>Email address</Form.Label>
-                                <Form.Control className="form" type="email" placeholder="Enter email" />
-                            </Form.Group>
-
-                            <Form.Group className="mb-3" controlId="formBasicPassword">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control className="form" type="password" placeholder="Password" />
-                            </Form.Group>
-                            <Button className="submitBtn" type="submit">
+                            <FormInput
+                                onChange={(email) => setLoginDetails({...loginDetails, email})}
+                                value={loginDetails.email}
+                                type={'email'}
+                                inputClass={'form'}
+                                inputId={'formBasicEmail'}
+                                label={'Email address'}
+                                placeholder={'Enter email'}
+                            />
+                            <FormInput 
+                                onChange={(password) => setLoginDetails({...loginDetails, password})}
+                                value={loginDetails.password}
+                                type={'password'}
+                                inputClass={'form'}
+                                inputId={'formBasicPassword'}
+                                label={'Password'}
+                                placeholder={'Enter password'}
+                            />
+                            <Button onClick={display} className="submitBtn" type="submit">
                                 Sign In
                             </Button>
                         </Form>

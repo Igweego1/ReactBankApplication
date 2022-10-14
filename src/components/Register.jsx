@@ -1,13 +1,30 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import FormInput from './FormInput'
 import '../App.css';
-import pic from '../Picture.png'
+import { getDate } from "../containers/Helpers";
+import pic from '../Picture.png';
 
 const Register = () => {
+    const [signUpDetails, setSignUpDetails] = React.useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNo: '',
+        gender: '',
+        dob: '',
+        nextOfKin: '',
+        initialDeposit: 0,
+        password: ''
+    })
     const navigate = useNavigate();
-    const genderOptions = ['male', 'female']
+
+    const testing = (e) => {
+        e.preventDefault();
+        console.log({signUpDetails})
+    }
+
     return(
         <Fragment>
             <Container className="fullHeight" as={'div'} fluid>
@@ -22,7 +39,9 @@ const Register = () => {
                     <Col sm={12} md={5} className="my-auto p-5">
                         <Form>
                             <div className="d-flex justify-content-between gap-3">
-                                <FormInput 
+                                <FormInput
+                                    change={(firstName) => setSignUpDetails({...signUpDetails, firstName})}
+                                    value={signUpDetails.firstName} 
                                     type={'text'}
                                     inputClass={'form'}
                                     inputId={'formBasicEmail'}
@@ -30,6 +49,8 @@ const Register = () => {
                                     placeholder={'Enter first name'}
                                 />
                                 <FormInput 
+                                    change={(lastName) => setSignUpDetails({...signUpDetails, lastName})}
+                                    value={signUpDetails.lastName}
                                     type={'text'}
                                     inputClass={'form'}
                                     inputId={'formBasicEmail'}
@@ -39,6 +60,8 @@ const Register = () => {
                             </div>
                             <div className="d-flex justify-content-between gap-3">
                                 <FormInput 
+                                    change={(email) => setSignUpDetails({...signUpDetails, email})}
+                                    value={signUpDetails.email}
                                     type={'email'}
                                     inputClass={'form'}
                                     inputId={'formBasicEmail'}
@@ -46,6 +69,8 @@ const Register = () => {
                                     placeholder={'Enter email'}
                                 />
                                 <FormInput 
+                                    change={(phoneNo) => setSignUpDetails({...signUpDetails, phoneNo})}
+                                    value={signUpDetails.phoneNo}
                                     type={'text'}
                                     inputClass={'form'}
                                     inputId={'formBasicEmail'}
@@ -54,14 +79,18 @@ const Register = () => {
                                 />
                             </div>
                             <div className="d-flex justify-content-between gap-3">
-                                <FormInput 
+                                <FormInput
+                                    change={(gender) => {
+                                        setSignUpDetails({...signUpDetails, gender})
+                                    }}
                                     type={'select'}
                                     inputClass={'form'}
                                     inputId={'formBasicEmail'}
                                     label={'Gender'}
-                                    options={genderOptions}
                                 />
                                 <FormInput 
+                                    change={(dob) => setSignUpDetails({...signUpDetails, dob: getDate(dob) })}
+                                    value={signUpDetails.dob}
                                     type={'date'}
                                     inputClass={'form'}
                                     inputId={'formBasicEmail'}
@@ -70,6 +99,8 @@ const Register = () => {
                             </div>
                             <div className="d-flex justify-content-between gap-3">
                                 <FormInput 
+                                    change={(nextOfKin) => setSignUpDetails({...signUpDetails, nextOfKin})}
+                                    value={signUpDetails.nextOfKin} 
                                     type={'text'}
                                     inputClass={'form'}
                                     inputId={'formBasicEmail'}
@@ -77,6 +108,8 @@ const Register = () => {
                                     placeholder={'Enter next of kin'}
                                 />
                                 <FormInput 
+                                    change={(initialDeposit) => setSignUpDetails({...signUpDetails, initialDeposit})}
+                                    value={signUpDetails.initialDeposit} 
                                     type={'number'}
                                     inputClass={'form'}
                                     inputId={'formBasicEmail'}
@@ -86,6 +119,8 @@ const Register = () => {
                             </div>
                             <div className="d-flex justify-content-between gap-3">
                                 <FormInput 
+                                    change={(password) => setSignUpDetails({...signUpDetails, password})}
+                                    value={signUpDetails.password} 
                                     type={'password'}
                                     inputClass={'form'}
                                     inputId={'formBasicPassword'}
@@ -101,7 +136,7 @@ const Register = () => {
                                 />
                             </div>
     
-                            <Button className="submitBtn" type="submit">
+                            <Button onClick={testing} className="submitBtn" type="submit">
                                 Sign Up
                             </Button>
                         </Form>
