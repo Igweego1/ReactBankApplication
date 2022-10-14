@@ -1,0 +1,30 @@
+* {
+  font-family: 'Questrial', sans-serif;
+  background-color: #F6F6F6;
+}
+
+.fullHeight {
+  height: 100vh;
+}
+
+.register {
+  color: #4461F2;
+}
+
+.register:hover{
+  cursor: pointer;
+}
+
+.submitBtn {
+  background-color: #4461F2 !important;
+  width: 100% !important;
+}
+
+.form {
+  background-color: #EAF0F7 !important;
+  border: none !important;
+}
+
+.form:focus {
+  box-shadow: none !important;
+}
