@@ -41,9 +41,10 @@ export const getFromLocalStorage = (item) => {
     return obj;
 }
 
-export const getUserTransactions = (email, password) => {
+export const getUserTransactions = (email) => {
     let allTransactions = getFromLocalStorage('allTransactions');
-    return allTransactions.find(x => x.email === email && x.password === password);
+    let find = allTransactions.filter(x => x.userEmail === email);
+    return find !== undefined ? find : [];
 }
 
 let allUsers = getFromLocalStorage('allUsers');

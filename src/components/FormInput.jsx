@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import {Form} from 'react-bootstrap';
 
 const FormInput = ({change, label, placeholder, type, inputClass, inputId, value}) => {
-    const [gender, setGender] = React.useState('female');
     const inputTypes = ['text', 'email', 'password', 'number', 'date'];
     const genderOptions = [
         {
@@ -37,12 +36,11 @@ const FormInput = ({change, label, placeholder, type, inputClass, inputId, value
                         id={inputId} 
                         className={`${inputClass} p-2`} 
                         onChange={(e) => {
-                            const selected = e.target.value;
-                            setGender(selected)
                             change(e.target.value)
                         }}
-                        value={gender}
+                        defaultValue={'gender'}
                     >
+                        <option value={'gender'}>Gender</option>
                         {
                             genderOptions.map((x, index) => {
                                 return <option key={index} value={x.value}>{x.label}</option>

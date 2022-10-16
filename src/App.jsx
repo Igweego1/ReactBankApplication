@@ -17,7 +17,10 @@ function App() {
           {/* <ProtectedRoute path='/' element={<Login/>}/>
           {isAuth ? <Route path='/dashboard' element={<Dashboard/>}/> : <Navigate replace to={'/'}/>} */}
           <Route path='/' element={<Login/>}/>
-          <Route path='/dashboard' element={<Dashboard/>}/>
+          <Route path='/dashboard' element={
+            <ProtectedRoute>
+              <Dashboard/>
+            </ProtectedRoute>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path="*" element={<NotFound/>} />
         </Routes>

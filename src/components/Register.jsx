@@ -25,6 +25,10 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(signUpDetails.password !== signUpDetails.confirmPassword){
+            alert('Passwords do\'nt match');
+            return;
+        }
         if(handleRegister(signUpDetails)){
             navigate('/');
         }
@@ -49,7 +53,7 @@ const Register = () => {
                                     value={signUpDetails.firstName} 
                                     type={'text'}
                                     inputClass={'form'}
-                                    inputId={'formBasicEmail'}
+                                    inputId={'fname'}
                                     label={'First name'}
                                     placeholder={'Enter first name'}
                                 />
@@ -58,7 +62,7 @@ const Register = () => {
                                     value={signUpDetails.lastName}
                                     type={'text'}
                                     inputClass={'form'}
-                                    inputId={'formBasicEmail'}
+                                    inputId={'lname'}
                                     label={'Last name'}
                                     placeholder={'Enter last name'}
                                 />
@@ -69,7 +73,7 @@ const Register = () => {
                                     value={signUpDetails.email}
                                     type={'email'}
                                     inputClass={'form'}
-                                    inputId={'formBasicEmail'}
+                                    inputId={'email'}
                                     label={'Email address'}
                                     placeholder={'Enter email'}
                                 />
@@ -78,7 +82,7 @@ const Register = () => {
                                     value={signUpDetails.phoneNo}
                                     type={'text'}
                                     inputClass={'form'}
-                                    inputId={'formBasicEmail'}
+                                    inputId={'phoneNo'}
                                     label={'Phone number'}
                                     placeholder={'Enter phone number'}
                                 />
@@ -90,7 +94,7 @@ const Register = () => {
                                     }}
                                     type={'select'}
                                     inputClass={'form'}
-                                    inputId={'formBasicEmail'}
+                                    inputId={'gender'}
                                     label={'Gender'}
                                 />
                                 <FormInput 
@@ -98,7 +102,7 @@ const Register = () => {
                                     value={signUpDetails.dob}
                                     type={'date'}
                                     inputClass={'form'}
-                                    inputId={'formBasicEmail'}
+                                    inputId={'dob'}
                                     label={'Date of birth'}
                                 />
                             </div>
@@ -108,7 +112,7 @@ const Register = () => {
                                     value={signUpDetails.nextOfKin} 
                                     type={'text'}
                                     inputClass={'form'}
-                                    inputId={'formBasicEmail'}
+                                    inputId={'nextOfKin'}
                                     label={'Next of kin'}
                                     placeholder={'Enter next of kin'}
                                 />
@@ -117,7 +121,7 @@ const Register = () => {
                                     value={signUpDetails.initialDeposit} 
                                     type={'number'}
                                     inputClass={'form'}
-                                    inputId={'formBasicEmail'}
+                                    inputId={'initialDeposit'}
                                     label={'Initial deposit'}
                                     placeholder={'Enter initial deposit'}
                                 />
@@ -128,14 +132,14 @@ const Register = () => {
                                     value={signUpDetails.password} 
                                     type={'password'}
                                     inputClass={'form'}
-                                    inputId={'formBasicPassword'}
+                                    inputId={'password'}
                                     label={'Password'}
                                     placeholder={'Enter password'}
                                 />
                                 <FormInput 
                                     type={'password'}
                                     inputClass={'form'}
-                                    inputId={'formBasicPassword2'}
+                                    inputId={'confirmPassword'}
                                     label={'Confirm password'}
                                     placeholder={'Confirm password'}
                                     change={(confirmPassword) => setSignUpDetails({...signUpDetails, confirmPassword})}

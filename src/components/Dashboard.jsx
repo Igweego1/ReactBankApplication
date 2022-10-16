@@ -1,16 +1,16 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import {Button, Modal, Table} from 'react-bootstrap';
-import { getAuthenticatedUser, greetings, getFromLocalStorage } from '../containers/Helpers';
+import { getAuthenticatedUser, greetings, getFromLocalStorage, getUserTransactions } from '../containers/Helpers';
 import { AuthContext } from '../context/Auth';
 import { TransactionContext } from '../context/Transactions';
 import FormInput from './FormInput';
 
 const Dashboard = () => {
-    const allTransactions = getFromLocalStorage('allTransactions');
     const {handleLogout} = React.useContext(AuthContext);
     const {handleWithdraw, handleDeposit} = React.useContext(TransactionContext);
     const user = getAuthenticatedUser();
+    const userTransactions = getUserTransactions(user.email);
     const [transactions, setTransactions] = React.useState({
         userEmail: user.email,
         type: '',
@@ -37,6 +37,8 @@ const Dashboard = () => {
             handleDeposit(transactions);
         }
     }
+
+    console.log(user);
 
     const logout = (e) => {
         e.preventDefault();
@@ -148,8 +150,8 @@ const Dashboard = () => {
                 </thead>
                 <tbody>
                     {
-                        allTransactions && (
-                            allTransactions.map((x, index) => {
+                        userTransactions && (
+                            userTransactions.map((x, index) => {
                                 return (
                                     <tr key={index}>
                                         <td>{x.type}</td>

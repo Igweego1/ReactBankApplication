@@ -6,6 +6,7 @@ let user = getAuthenticatedUser();
 
 export const transactionReducer = (state, action) => {
     let find = getIndexOfUser(user);
+    console.log(find)
     switch(action.type){
         case 'Debit':
             allTransactions.push(action.payload);

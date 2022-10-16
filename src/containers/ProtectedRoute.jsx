@@ -1,10 +1,9 @@
 import React from 'react';
 import {Navigate} from 'react-router-dom';
-import Dashboard from '../components/Dashboard';
 import {getAuthenticatedUser} from './Helpers';
 
-const ProtectedRoute = () => {
+const ProtectedRoute = ({children}) => {
     const isAuth = getAuthenticatedUser();
-    return isAuth ? <Dashboard /> : <Navigate to={'/'}/>
+    return isAuth ? children : <Navigate to={'/'}/>
 }
 export default ProtectedRoute;
