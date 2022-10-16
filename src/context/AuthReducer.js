@@ -1,14 +1,9 @@
-import { getFromLocalStorage, setToLocalStorage } from "../containers/Helpers";
+import { getFromLocalStorage, setToLocalStorage, getIndexOfUser } from "../containers/Helpers";
 
-let allUsers = getFromLocalStorage('allUsers');
 
 export const getInitialState = () => {
     return localStorage.getItem('allUsers') ? JSON.parse(localStorage.getItem('allUsers')) : [];
 };
-
-const getIndexOfUser = (user) => {
-    return allUsers ? allUsers.findIndex(a => a.userDetails.email === user.email && a.userDetails.password === user.password) : [];
-}
 
 const init = getInitialState();
 
