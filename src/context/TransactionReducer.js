@@ -6,14 +6,11 @@ let user = getAuthenticatedUser();
 
 export const transactionReducer = (state, action) => {
     let find = getIndexOfUser(user);
-    console.log(find)
     switch(action.type){
         case 'Debit':
             allTransactions.push(action.payload);
             if(find !== -1){
                 allUsers[find].userDetails.initialDeposit = action.payload.userBalance;
-                console.log(allUsers);
-                console.log(allTransactions)
                 setToLocalStorage('allUsers', allUsers);
                 setToLocalStorage('allTransactions', allTransactions);
             }
@@ -22,8 +19,6 @@ export const transactionReducer = (state, action) => {
             allTransactions.push(action.payload);
             if(find !== -1){
                 allUsers[find].userDetails.initialDeposit = action.payload.userBalance;
-                console.log(allUsers);
-                console.log(allTransactions)
                 setToLocalStorage('allUsers', allUsers);
                 setToLocalStorage('allTransactions', allTransactions);
             }

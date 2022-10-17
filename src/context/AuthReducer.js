@@ -1,4 +1,4 @@
-import { getFromLocalStorage, setToLocalStorage, getIndexOfUser } from "../containers/Helpers";
+import { setToLocalStorage, getIndexOfUser } from "../containers/Helpers";
 
 
 export const getInitialState = () => {
@@ -9,7 +9,6 @@ const init = getInitialState();
 
 export const reducer = (state, action) => {
     let find = getIndexOfUser(action.payload.userDetails);
-    console.log(find)
     switch(action.type){
         case 'register':
             if(find === -1){
@@ -22,7 +21,6 @@ export const reducer = (state, action) => {
             break;
         case 'login':
             if(find !== -1){
-                console.log('found');
                 init[find].isAuthenticated = action.payload.isAuthenticated;
                 setToLocalStorage('allUsers', init);
             }
@@ -30,7 +28,6 @@ export const reducer = (state, action) => {
         case 'logout':
             init[find].isAuthenticated = action.payload.isAuthenticated;
             setToLocalStorage('allUsers', init);
-            console.log(init);
             break;
         default:
             return state;
