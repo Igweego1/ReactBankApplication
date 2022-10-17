@@ -1,11 +1,6 @@
-import { setToLocalStorage, getIndexOfUser } from "../containers/Helpers";
+import { setToLocalStorage, getIndexOfUser, getFromLocalStorage } from "../containers/Helpers";
 
-
-export const getInitialState = () => {
-    return localStorage.getItem('allUsers') ? JSON.parse(localStorage.getItem('allUsers')) : [];
-};
-
-const init = getInitialState();
+const init = getFromLocalStorage('allUsers');
 
 export const reducer = (state, action) => {
     let find = getIndexOfUser(action.payload.userDetails);

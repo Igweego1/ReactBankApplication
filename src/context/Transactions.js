@@ -3,10 +3,9 @@ import { transactionReducer } from "./TransactionReducer";
 import { getAuthenticatedUser, getFromLocalStorage, getDateTime } from "../containers/Helpers";
 
 export const TransactionContext = React.createContext([]);
-let allUsers = getFromLocalStorage('allUsers');
 
 const TransactionProvider = ({children}) => {
-    const [transaction, transactionDispatch] = React.useReducer(transactionReducer, allUsers);
+    const [transaction, transactionDispatch] = React.useReducer(transactionReducer, getFromLocalStorage('allTransactions'));
 
     const handleWithdraw = (details) => {
         transactionDispatch({

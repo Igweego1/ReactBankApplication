@@ -1,11 +1,11 @@
 import React from "react";
-import {reducer, getInitialState} from './AuthReducer';
-import { verifyIfUserExists, findUser } from "../containers/Helpers";
+import {reducer} from './AuthReducer';
+import { verifyIfUserExists, findUser, getFromLocalStorage } from "../containers/Helpers";
 
 export const AuthContext = React.createContext([]);
 
 const AuthProvider = ({children}) => {
-    const [auth, authDispatch] = React.useReducer(reducer, getInitialState());
+    const [auth, authDispatch] = React.useReducer(reducer, getFromLocalStorage('allUsers'));
 
     const handleRegister = (user) => {
         let {confirmPassword, ...details} = user;

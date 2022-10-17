@@ -217,33 +217,6 @@ const Dashboard = () => {
                 </Row>
             </Container>
         </Fragment>
-        // <Container className="fullHeight" as={'div'} fluid>
-        //     <Row className='h-100'>
-        //         <Col sm={12} md={3} className={'shadow-sm'}>
-        //             <Sidebar user={user}/>
-        //         </Col>
-        //         <Col sm={12} md={9}>
-        //             <p>Dashboard</p>
-        //             <p>Good {greetings()}, {user.firstName}</p>
-        //             <h4>N{user.initialDeposit}</h4>
-        //             <div className='d-flex gap-4 mb-3'>
-        //                 <Button className="submitBtn" onClick={handleShowWithdraw}>
-        //                     Withdraw
-        //                 </Button>
-        //                 <Button className="submitBtn" onClick={handleShowDeposit}>
-        //                 Deposit
-        //             </Button>
-        //             </div>
-        //             <Button onClick={logout} className="submitBtn">
-        //                 Logout
-        //             </Button>
-
-        
-
-        
-        //         </Col>
-        //     </Row>
-        // </Container>
     )
 }
 
