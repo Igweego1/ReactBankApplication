@@ -14,8 +14,6 @@ function App() {
     <Fragment>
       <BrowserRouter>
         <Routes>
-          {/* <ProtectedRoute path='/' element={<Login/>}/>
-          {isAuth ? <Route path='/dashboard' element={<Dashboard/>}/> : <Navigate replace to={'/'}/>} */}
           <Route path='/' element={<Login/>}/>
           <Route path='/dashboard' element={
             <ProtectedRoute>

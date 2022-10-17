@@ -4,7 +4,6 @@ import { getAuthenticatedUser, getFromLocalStorage, getDateTime } from "../conta
 
 export const TransactionContext = React.createContext([]);
 let allUsers = getFromLocalStorage('allUsers');
-let allTransactions = getFromLocalStorage('allTransactions');
 
 const TransactionProvider = ({children}) => {
     const [transaction, transactionDispatch] = React.useReducer(transactionReducer, allUsers);
