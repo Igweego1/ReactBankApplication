@@ -23,6 +23,7 @@ const AuthProvider = ({children}) => {
 
     const handleLogin = (user) => {
         const details = findUser(user.email);
+        console.log(details, verifyIfUserExists(user.email, user.password))
         if(details && verifyIfUserExists(user.email, user.password)){
             authDispatch({
                 type: 'login',
