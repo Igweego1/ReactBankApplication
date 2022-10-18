@@ -68,6 +68,7 @@ export const findUser = (email) => {
 }
 
 export const verifyIfUserExists = (email, password) => {
+    allUsers = getFromLocalStorage('allUsers');
     let find = (a) => a.userDetails.email === email && a.userDetails.password === password;
     //allusers && allusers.find(x => x.userDetails.email === email);
     return allUsers && allUsers.some(find);
