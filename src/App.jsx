@@ -7,12 +7,13 @@ import Register from './components/Register';
 import NotFound from './components/NotFound';
 import Dashboard from './components/Dashboard';
 import {getAuthenticatedUser} from './containers/Helpers';
+import Layout from './containers/Layout';
 
 function App() {
   const isAuth = getAuthenticatedUser();
   return (
-    <Fragment>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Layout>
         <Routes>
           <Route path='/' element={<Login/>}/>
           <Route path='/dashboard' element={
@@ -22,8 +23,8 @@ function App() {
           <Route path='/register' element={<Register/>}/>
           <Route path="*" element={<NotFound/>} />
         </Routes>
-      </BrowserRouter>
-    </Fragment>
+      </Layout>
+    </BrowserRouter>
   );
 }
 

@@ -1,15 +1,15 @@
 import React from "react";
-import {reducer} from './AuthReducer';
-import { verifyIfUserExists, findUser, getFromLocalStorage } from "../containers/Helpers";
+import {getInitialState, reducer} from './AuthReducer';
+import { verifyIfUserExists, findUser} from "../containers/Helpers";
 
 export const AuthContext = React.createContext([]);
 
 const AuthProvider = ({children}) => {
-    const [auth, authDispatch] = React.useReducer(reducer, getFromLocalStorage('allUsers'));
+    const [auth, authDispatch] = React.useReducer(reducer, getInitialState());
 
     const handleRegister = (user) => {
         let {confirmPassword, ...details} = user;
-        if(verifyIfUserExists(user.email, user.password)){
+        if(verifyIfUserExists(details.email, details.password).length > 0){
             alert('account already exists');
         }
         else {
@@ -23,11 +23,9 @@ const AuthProvider = ({children}) => {
 
     const handleLogin = (user) => {
         const details = findUser(user.email);
-        console.log(verifyIfUserExists(user.email, user.password))
-        if(verifyIfUserExists(user.email, user.password)){
+        if(verifyIfUserExists(user.email, user.password).length > 0){
             authDispatch({
                 type: 'login',
-                //payload: {isAuthenticated: true, userDetails: details}
                 payload: {...details, isAuthenticated:true}
             })
             return true;

@@ -37,7 +37,7 @@ export const greetings = () => {
 }
 
 export const getFromLocalStorage = (item) => {
-    const obj = localStorage.getItem(item) ? JSON.parse(localStorage.getItem(item)) : [];
+    const obj = JSON.parse(localStorage.getItem(item)) || [];
     return obj;
 }
 
@@ -50,7 +50,8 @@ export const getUserTransactions = (email) => {
 let allUsers = getFromLocalStorage('allUsers');
 
 export const getIndexOfUser = (user) => {
-    return allUsers ? allUsers.findIndex(a => a.userDetails.email === user.email && a.userDetails.password === user.password) : [];
+    allUsers = getFromLocalStorage('allUsers');
+    return allUsers?.findIndex(a => a.userDetails.email === user.email && a.userDetails.password === user.password);
 }
 
 export const setToLocalStorage = (name, item) => {
@@ -64,12 +65,20 @@ export const getAuthenticatedUser = () => {
 }
 
 export const findUser = (email) => {
-    return(allUsers ? allUsers.find(y => y.userDetails.email === email) : {})
+    allUsers = getFromLocalStorage('allUsers');
+    return(allUsers?.find(y => y.userDetails.email === email))
 }
 
 export const verifyIfUserExists = (email, password) => {
     allUsers = getFromLocalStorage('allUsers');
-    let find = (a) => a.userDetails.email === email && a.userDetails.password === password;
-    //allusers && allusers.find(x => x.userDetails.email === email);
-    return allUsers && allUsers.some(find);
+    let find = allUsers?.filter((a) => {
+        if(a.userDetails.email === email && a.userDetails.password === password){
+            return a;
+        }
+    })
+
+    return find;
+
+    //let find = (a) => a.userDetails.email === email && a.userDetails.password === password;
+    //return allUsers && allUsers.some(find);
 }

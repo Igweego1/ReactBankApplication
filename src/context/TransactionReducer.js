@@ -9,6 +9,8 @@ export const transactionReducer = (state, action) => {
     switch(action.type){
         case 'Debit':
             allTransactions.push(action.payload);
+            console.log(allTransactions);
+            console.log(find);
             if(find !== -1){
                 allUsers[find].userDetails.initialDeposit = action.payload.userBalance;
                 setToLocalStorage('allUsers', allUsers);
