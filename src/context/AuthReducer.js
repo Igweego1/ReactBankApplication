@@ -22,12 +22,14 @@ export const reducer = (state, action) => {
             if(find !== -1){
                 init[find].isAuthenticated = action.payload.isAuthenticated;
                 setToLocalStorage('allUsers', init);
+                setToLocalStorage('currentUser', action.payload.userDetails)
             }
             break;
         case 'logout':
             init = getInitialState();
             init[find].isAuthenticated = action.payload.isAuthenticated;
             setToLocalStorage('allUsers', init);
+            localStorage.removeItem('currentUser');
             break;
         default:
             return state;

@@ -1,10 +1,9 @@
 import React, { Fragment } from 'react';
 import {useNavigate} from 'react-router-dom';
-import {Card, Button, Modal, Table, Container, Row, Col, Badge} from 'react-bootstrap';
-import { getAuthenticatedUser, greetings, getUserTransactions } from '../containers/Helpers';
+import {Card, Button, Table, Row, Col, Badge} from 'react-bootstrap';
+import { getFromLocalStorage, greetings, getUserTransactions } from '../containers/Helpers';
 import { AuthContext } from '../context/Auth';
 import { TransactionContext } from '../context/Transactions';
-import FormInput from './FormInput';
 import '../App.css';
 import pic from '../Picture.png';
 import CustomModal from './CustomModal';
@@ -12,7 +11,7 @@ import CustomModal from './CustomModal';
 const Dashboard = () => {
     const {handleLogout} = React.useContext(AuthContext);
     const {handleWithdraw, handleDeposit} = React.useContext(TransactionContext);
-    const user = getAuthenticatedUser();
+    const user = getFromLocalStorage('currentUser');
     const userTransactions = getUserTransactions(user.email);
     const [transactions, setTransactions] = React.useState({
         userEmail: user.email,

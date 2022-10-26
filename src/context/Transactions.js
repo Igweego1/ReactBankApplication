@@ -1,6 +1,6 @@
 import React from "react";
 import { transactionReducer } from "./TransactionReducer";
-import { getAuthenticatedUser, getFromLocalStorage, getDateTime } from "../containers/Helpers";
+import { getFromLocalStorage, getDateTime } from "../containers/Helpers";
 
 export const TransactionContext = React.createContext([]);
 
@@ -14,7 +14,7 @@ const TransactionProvider = ({children}) => {
                 ...details, 
                 date: getDateTime(),
                 type: 'Debit',
-                userBalance: parseFloat(getAuthenticatedUser().initialDeposit) - parseFloat(details.amount)
+                userBalance: parseFloat(getFromLocalStorage('currentUser').initialDeposit) - parseFloat(details.amount)
             }
         });
         return true;
@@ -27,7 +27,7 @@ const TransactionProvider = ({children}) => {
                 ...details, 
                 date: getDateTime(),
                 type: 'Credit',
-                userBalance: parseFloat(getAuthenticatedUser().initialDeposit) + parseFloat(details.amount)
+                userBalance: parseFloat(getFromLocalStorage('currentUser').initialDeposit) + parseFloat(details.amount)
             }
         });
         return true;

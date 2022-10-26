@@ -1,8 +1,8 @@
-import { getFromLocalStorage, getIndexOfUser, setToLocalStorage, getAuthenticatedUser } from "../containers/Helpers";
+import { getFromLocalStorage, getIndexOfUser, setToLocalStorage } from "../containers/Helpers";
 
 let allUsers = getFromLocalStorage('allUsers');
 let allTransactions = getFromLocalStorage('allTransactions');
-let user = getAuthenticatedUser();
+let user = getFromLocalStorage('currentUser');
 
 export const transactionReducer = (state, action) => {
     let find = getIndexOfUser(user);
@@ -13,7 +13,9 @@ export const transactionReducer = (state, action) => {
             console.log(find);
             if(find !== -1){
                 allUsers[find].userDetails.initialDeposit = action.payload.userBalance;
+                user.initialDeposit = action.payload.userBalance;
                 setToLocalStorage('allUsers', allUsers);
+                setToLocalStorage('currentUser', user);
                 setToLocalStorage('allTransactions', allTransactions);
             }
             break;
@@ -21,7 +23,9 @@ export const transactionReducer = (state, action) => {
             allTransactions.push(action.payload);
             if(find !== -1){
                 allUsers[find].userDetails.initialDeposit = action.payload.userBalance;
+                user.initialDeposit = action.payload.userBalance;
                 setToLocalStorage('allUsers', allUsers);
+                setToLocalStorage('currentUser', user);
                 setToLocalStorage('allTransactions', allTransactions);
             }
             break;
