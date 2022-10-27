@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import FormInput from "./FormInput";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { genericCalls } from "../containers/Helpers";
 import '../App.css';
 import pic from '../Picture.png'
 import { AuthContext } from "../context/Auth";
@@ -13,12 +14,25 @@ const Login = () => {
         email: '',
         password: ''
     })
+    
+    const loginOptions = {
+        method:'POST',
+        url: 'https://localhost:7170/login',
+        data: {
+            "userName": loginDetails.email,
+            "password": loginDetails.password
+        }
+    }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if(handleLogin(loginDetails)){
             navigate('/dashboard');
         }
+        // const response = await genericCalls(loginOptions);
+        // if(response === 200){
+        //     navigate('/dashboard')
+        // }
     }
 
     return(

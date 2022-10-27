@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const getDate = (val) => {
     let date = new Date(val);
     let day = date.getDay(); 
@@ -82,3 +84,9 @@ export const verifyIfUserExists = (email, password) => {
     //let find = (a) => a.userDetails.email === email && a.userDetails.password === password;
     //return allUsers && allUsers.some(find);
 }
+
+export const genericCalls = async (options) => {
+    const res = await axios.request(options);
+    const data = res.status;
+    return data;
+ }

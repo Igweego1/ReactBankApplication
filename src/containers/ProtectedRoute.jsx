@@ -1,9 +1,9 @@
 import React from 'react';
 import {Navigate} from 'react-router-dom';
-import {getAuthenticatedUser} from './Helpers';
+import {getFromLocalStorage} from './Helpers';
 
 const ProtectedRoute = ({children}) => {
-    const isAuth = getAuthenticatedUser();
+    const isAuth = getFromLocalStorage('currentUser');
     return isAuth ? children : <Navigate to={'/'}/>
 }
 export default ProtectedRoute;
